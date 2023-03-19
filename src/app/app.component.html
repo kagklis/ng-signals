@@ -1,0 +1,18 @@
+<div class="container">
+  <p>
+    Price:
+    <input #priceInput
+      type="number"
+      min="0"
+      oninput="validity.valid || (value = 0);"
+      [value]="price()"
+    />
+  </p>
+  <p>VAT (15%): {{ vat() }}</p>
+  <p><b>Total: {{ total() }}</b></p>
+  <button (click)="calculate(+priceInput.value)">Calculate</button>
+  <hr />
+  <p *ngFor="let entry of history()">
+    Price: {{ entry.price }} - Total: {{ entry.total }}
+  </p>
+</div>
