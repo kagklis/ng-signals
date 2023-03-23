@@ -33,23 +33,24 @@ export class AppComponent implements OnInit {
 
   onInputUpdate(event: Event): void {
     const newValue = +(event.target as HTMLInputElement).value;
-    if (newValue < 0) {
+    if (newValue <= 0) {
       return;
     }
     this.price.set(newValue);
   }
 
   save(): void {
-    if (this.price() < 0) {
+    if (this.price() <= 0) {
       return;
     }
     this.history.mutate((history: HistoryEntry[]) =>
-      history.push({ price: this.price(), total: this.total() })
+      history.push({ price: this.price(), vat: this.vat(), total: this.total() })
     );
   }
 }
 
 interface HistoryEntry {
   price: number;
+  vat: number;
   total: number;
 }

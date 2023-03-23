@@ -10,10 +10,12 @@
     />
   </p>
   <p>VAT (15%): {{ vat() }}</p>
-  <p><b>Total: {{ total() }}</b></p>
+  <p>
+    <b>Total: {{ total() }}</b>
+  </p>
   <button (click)="save()">Save</button>
   <hr />
   <p *ngFor="let entry of history()">
-    Price: {{ entry.price }} - Total: {{ entry.total }}
+    Price: {{ entry.price }} | VAT: {{ entry.vat }} | Total: {{ entry.total }}
   </p>
 </div>
