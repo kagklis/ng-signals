@@ -31,11 +31,18 @@ export class AppComponent implements OnInit {
     }
   }
 
-  calculate(priceValue: number): void {
-    if (priceValue < 0) {
+  onInputUpdate(event: Event): void {
+    const newValue = +(event.target as HTMLInputElement).value;
+    if (newValue < 0) {
       return;
     }
-    this.price.set(priceValue);
+    this.price.set(newValue);
+  }
+
+  save(): void {
+    if (this.price() < 0) {
+      return;
+    }
     this.history.mutate((history: HistoryEntry[]) =>
       history.push({ price: this.price(), total: this.total() })
     );
