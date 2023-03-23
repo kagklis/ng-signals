@@ -33,9 +33,6 @@ export class AppComponent implements OnInit {
 
   onInputUpdate(event: Event): void {
     const newValue = +(event.target as HTMLInputElement).value;
-    if (newValue <= 0) {
-      return;
-    }
     this.price.set(newValue);
   }
 
