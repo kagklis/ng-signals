@@ -1,21 +1,45 @@
-<div class="container">
-  <p>
-    Price:
-    <input
-      type="number"
-      min="0"
-      oninput="validity.valid || (value = 0);"
-      (input)="onInputUpdate($event)"
-      [value]="price()"
-    />
-  </p>
-  <p>VAT (15%): {{ vat() }}</p>
-  <p>
-    <b>Total: {{ total() }}</b>
-  </p>
-  <button (click)="save()">Save</button>
+<div class="container mt-5">
+  <div class="row align-items-center mb-2">
+    <div class="col-lg-2 col-4">
+      <label class="form-label">Price:</label>
+    </div>
+    <div class="col-auto">
+      <input
+        type="number"
+        min="0"
+        oninput="validity.valid || (value = 0);"
+        (input)="onInputUpdate($event)"
+        [value]="price()"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row align-items-center mb-2">
+    <div class="col-lg-2 col-4">VAT (15%):</div>
+    <div class="col-auto">
+      {{ vat() }}
+    </div>
+  </div>
+  <div class="row align-items-center mb-2">
+    <div class="col-lg-2 col-4"><b>Total:</b></div>
+    <div class="col-auto">{{ total() }}</div>
+  </div>
+  <button class="btn-primary btn" (click)="save()">Save</button>
   <hr />
-  <p *ngFor="let entry of history()">
-    Price: {{ entry.price }} | VAT: {{ entry.vat }} | Total: {{ entry.total }}
-  </p>
+  <table *ngIf="history()?.length" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Price</th>
+        <th scope="col">VAT</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of history()">
+        <td>{{ entry.price }}</td>
+        <td>{{ entry.vat }}</td>
+        <td>{{ entry.total }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

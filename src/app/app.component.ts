@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { Component, computed, effect, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [FormsModule, NgFor]
+  imports: [FormsModule, NgIf, NgFor]
 })
 export class AppComponent implements OnInit {
   price = signal<number>(0);
